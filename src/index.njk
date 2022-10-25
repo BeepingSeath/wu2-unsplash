@@ -2,14 +2,15 @@
 layout: base.njk
 ---
 
-<main>
+<main class="container">
     <h1>Data dump</h1>
-    <p>Min github user: {{ github.login }} och plats: {{ github.location }}.</p>
-    {% asyncAll  item in unsplash.results %}
-        <!-- <pre>{{ item | dump(2) }}</pre> -->
-        <!-- <img src="{{ item.urls.small }}" alt="{{ item.description }}"> -->
+    <p>Min github user: {{ github.login }} och plats: {{ github.location }}</p>
+    <div class="grid">
+        {% asyncAll item in onion.results %}
         {% image item.urls.small, item.alt_description %}
-    {% endall %}
-
-    <!-- {% image "https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNzQ3Nzh8MHwxfHNlYXJjaHwxfHxoYWxsb3dlZW58ZW58MHx8fHwxNjY2NTk0Mjc4&ixlib=rb-4.0.3&q=80&w=400", "photo of my cat" %} -->
+        {% endall %}
+        {% image unsplash.results[9].tags[0].source.cover_photo.urls.small, "spooky boi" %}
+    </div>
+    <pre>
+</pre>
 </main>

@@ -1,0 +1,25 @@
+@use "reset";
+
+.container {
+    width: min(80ch, 100vw - 2rem);
+    margin-inline: auto;
+}
+html {
+    background-color: #000000;
+    color: white;
+}
+::-webkit-scrollbar {
+    width: 1px;
+  }
+.container {
+    width: min(80ch, 100vw - 2rem);
+    margin-inline: auto;
+}
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #000000;
+    padding: auto;
+    row-gap: 20px;
+    column-gap: 10px;
+}
