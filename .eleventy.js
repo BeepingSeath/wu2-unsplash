@@ -20,6 +20,28 @@ async function imageShortcode(src, alt, sizes) {
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+
+    eleventyConfig.addFilter("getCurrency", (currencyObject) => {
+        //console.log(currencyObject);
+        let symbol;
+
+        for (const [key, value] of Object.entries(currencyObject)) {
+            console.log(`${key}: ${value.symbol}`);
+            symbol = value.symbol;
+          }
+        return symbol;
+    })
+    eleventyConfig.addFilter("getLanguage", (languageObject) => {
+        //console.log(currencyObject);
+        let language;
+
+        for (const [key, value] of Object.entries(languageObject)) {
+            console.log(`${key}: ${value}`);
+            language = value;
+          }
+        return language;
+    })
+
     return {
         dir: {
             input: 'src',

@@ -6,11 +6,16 @@ layout: base.njk
     <h1>Data dump</h1>
     <p>Min github user: {{ github.login }} och plats: {{ github.location }}</p>
     <div class="grid">
-        {% asyncAll item in onion.results %}
-        {% image item.urls.small, item.alt_description %}
-        {% endall %}
-        {% image unsplash.results[9].tags[0].source.cover_photo.urls.small, "spooky boi" %}
+        {% for item in land %}
+        {% image item.flags.png, "Flag" %}
+        <div>
+        <h2>Name: {{ item.name.official }}</h1>
+        <h3>Capital: {{ item.capital}}</h3>
+        <h3>Language: {{ item.languages | getLanguage}}</h3>
+        <h3>Currency: {{ item.currencies | getCurrency }}</h3>
+        </div>
+        {% endfor %}
+
+        
     </div>
-    <pre>
-</pre>
 </main>
