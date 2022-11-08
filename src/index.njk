@@ -3,8 +3,8 @@ layout: base.njk
 ---
 
 <main class="container">
-    <h1>Data dump</h1>
-    <p>Min github user: {{ github.login }} och plats: {{ github.location }}</p>
+    <h1>Europe</h1>
+    <p>After Ukraine it switches to all countries in the world</p>
     <div class="grid">
         {% for item in land %}
         {% image item.flags.png, "Flag" %}
@@ -15,7 +15,14 @@ layout: base.njk
         <h3>Currency: {{ item.currencies | getCurrency }}</h3>
         </div>
         {% endfor %}
-
         
+        {% for item in countries %}
+        {% image item.flags.png, "Flag" %}
+        <div>
+        <h2>Name: {{ item.name.official }}</h1>
+        <h3>Capital: {{ item.capital}}</h3>
+        </div>
+        {% endfor %}
+
     </div>
 </main>
