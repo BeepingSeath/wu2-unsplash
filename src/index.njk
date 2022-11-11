@@ -7,9 +7,9 @@ layout: base.njk
     <p>After Ukraine it switches to all countries in the world</p>
     <div class="grid">
         {% for item in land %}
-        {% image item.flags.png, "Flag" %}
+        {% image item.flags.png, "flag" %}
         <div>
-        <h2>Name: {{ item.name.official }}</h1>
+        <h2>Name: {{ item.name.official }}</h2>
         <h3>Capital: {{ item.capital}}</h3>
         <h3>Language: {{ item.languages | getLanguage}}</h3>
         <h3>Currency: {{ item.currencies | getCurrency }}</h3>
@@ -19,10 +19,9 @@ layout: base.njk
         {% for item in countries %}
         {% image item.flags.png, "Flag" %}
         <div>
-        <h2>Name: {{ item.name.official }}</h1>
+        <h2>Name: {{ item.name.official }}</h2>
         <h3>Capital: {{ item.capital}}</h3>
         </div>
         {% endfor %}
-
     </div>
 </main>
