@@ -1,6 +1,6 @@
 const Image = require("@11ty/eleventy-img");
 
-async function imageShortcode(src, alt, sizes) {
+async function imageShortcode(src, alt, sizes="(min-width: 30em) 50vw, 100vw") {
     let metadata = await Image(src, {
         widths: [300, 600],
         formats: ['avif', 'jpeg'],
@@ -20,6 +20,7 @@ async function imageShortcode(src, alt, sizes) {
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+    eleventyConfig.addPlugin(lazyImages, {})
 
     eleventyConfig.addFilter("getCurrency", (currencyObject) => {
         //console.log(currencyObject);
@@ -49,3 +50,23 @@ module.exports = function (eleventyConfig) {
         },
     };
 };
+function lazyImages (eleventyConfig, userOptions = {}) {
+    const {parse} = require('node-html-parser')
+  
+    const options = {
+      name: 'lazy-images',
+      ...userOptions
+    }
+  
+    eleventyConfig.addTransform(options.extensions, (content, outputPath) => {
+      if (outputPath.endsWith('.html')) {
+        const root = parse(content);
+        const images = root.querySelectorAll('img');
+        images.forEach((img) => {
+          img.setAttribute('loading', 'lazy')
+        })
+        return root.toString()
+      }
+      return content;
+    })
+  }
